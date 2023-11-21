@@ -7,5 +7,5 @@
 |ORM 표준 JPA 프로그래밍|O|X- github|
 |실전! 스프링 JPA 활용1 - Web APP 개발|O|O|jpashop
 |실전! 스프링 JPA 활용2 - API 개발과 성능 최적화|O|O|jpashop2
-|실전 스프링 데이터 JPA|X|X|
+|실전 스프링 데이터 JPA|O|O|data-jpa
 |실전 QueryDSL|X|X|
