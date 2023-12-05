@@ -11,7 +11,7 @@ public class MemberTeamDto {
     private Long teamId;
     private String teamName;
 
-    @QueryProjection // -> 링크 첨부 ㄱ
+    @QueryProjection
     public MemberTeamDto(Long memberId, String username, int age, Long teamId, String teamName) {
         this.memberId = memberId;
         this.username = username;

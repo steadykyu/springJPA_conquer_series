@@ -273,18 +273,24 @@ public class QuerydslBasicTest {
         em.persist(new Member("teamA"));
         em.persist(new Member("teamB"));
 
-        List<Tuple> result = queryFactory
-                .select(member, team)
-                .from(member, team)
+//        List<Tuple> result = queryFactory
+//                .select(member, team)
+//                .from(member, team)
 //                .where(member.username.eq(team.name))
+//                .fetch();
+
+        List<Member> result = queryFactory
+                .select(member)
+                .from(member, team)
+                .where(member.username.eq(team.name))
                 .fetch();
 
-        for (Tuple tuple: result){
-            System.out.println(tuple);
-        }
-//        assertThat(result)
-//                .extracting("username")
-//                .containsExactly("teamA", "teamB");
+//        for (Tuple tuple: result){
+//            System.out.println(tuple);
+//        }
+        assertThat(result)
+                .extracting("username")
+                .containsExactly("teamA", "teamB");
 
         // 모든 member와 team을 가져와서 조인한 후 where문을 하는 경우
         // DB 마다 세타 조인 쿼리 초적화가 다르다.
