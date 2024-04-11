@@ -18,6 +18,13 @@ import javax.annotation.PostConstruct;
 public class MemberController {
 
     private final MemberRepository memberRepository;
+    // 샘플용 회원 만들기
+    @PostConstruct
+    public void init(){
+        for(int i=0; i < 100; i++){
+            memberRepository.save(new Member("user" + i, i, null));
+        }
+    }
 
     @GetMapping("/members/{id}")
     public String findMember(@PathVariable("id") Long id){
@@ -41,11 +48,10 @@ public class MemberController {
         return page;
     }
 
-
-//    @PostConstruct
-    public void init(){
-        for(int i=0; i < 100; i++){
-            memberRepository.save(new Member("user" + i, i, null));
-        }
+    @GetMapping("/members/test")
+    public Page<Member> pagableTest(@PageableDefault(size = 3) Pageable pageable){
+        Page<Member> page = memberRepository.findAll(pageable);
+        return page;
     }
+
 }
