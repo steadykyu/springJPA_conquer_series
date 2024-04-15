@@ -46,17 +46,13 @@ public class OrderApiController {
 
     @GetMapping("/api/v2/orders")
     public List<OrderDto> ordersV2(){
+        // 여러개의 Order Table의 Record를 조회하는 메서드
         List<Order> orders = orderRepository.findAllByString(new OrderSearch());
         List<OrderDto> collect = orders.stream()
                 .map(o -> new OrderDto(o))
                 .collect(toList());
 
         return collect;
-    }
-
-    @GetMapping("/api/v3.2/orders")
-    public List<jpabook.jpashop.service.query.OrderDto> ordersV3ByService(){
-        return orderQueryService.findAllByService();
     }
 
     @GetMapping("/api/v3/orders")
@@ -84,6 +80,11 @@ public class OrderApiController {
                 .collect(toList());
 
         return result;
+    }
+
+    @GetMapping("/api/v3.2/orders")
+    public List<jpabook.jpashop.service.query.OrderDto> ordersV3ByService(){
+        return orderQueryService.findAllByService();
     }
 
     @GetMapping("/api/v4/orders")
